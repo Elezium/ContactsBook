@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ContactsBook.Models.Email>
+
+<div class="panel panel-default panel-success">
+	<!-- Default panel contents -->
+	<div class="panel-heading"><h4>Emails</h4></div>
+	<div class="panel-body">
+		@Html.ActionLink("Add", "Create", "Emails", new { PersonId = ViewBag.PersonId }, new { @class = "btn btn-primary btn-sm", data_modal = "" })
+	</div>
+
+	<!-- Table -->
+	<table class="table">
+		<tr>
+			<th>@Html.DisplayNameFor(model => model.Type.Label)</th>
+			<th>@Html.DisplayNameFor(model => model.EmailAddress)</th>
+			<th>Actions</th>
+		</tr>
+		@foreach (var email in Model)
+			{
+			<tr>
+				<td>@Html.DisplayFor(item => email.Type.Label)</td>
+				<td>@Html.DisplayFor(item => email.EmailAddress)</td>
+				<td>
+					@Html.ActionLink("Edit", "Edit", "Emails", new { id = email.Id }, new { @class = "btn btn-warning btn-sm", data_modal = "" })
+					- @Html.ActionLink("Delete", "Delete", "Emails", new { id = email.Id }, new { @class = "btn btn-danger btn-sm", data_modal = "" })
+				</td>
+			</tr>
+			}
+
+	</table>
+</div>
+
+<script src="~/Scripts/modalform.js"></script>

@@ -1,0 +1,22 @@
+﻿@model ContactsBook.Models.Person
+
+<h2 class="text-center"><em>@Html.DisplayFor(model=> Model.FirstName) @Html.DisplayFor(model => Model.LastName)</em></h2>
+
+<div id="idAddress">
+	@{ Html.RenderAction("ListAddresses", "Addresses", @Model.Id); }
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div id="idPhone">
+			@{ Html.RenderAction("ListPhones", "Phones", @Model.Id); }
+			</div>
+		</div>
+	<div class="col-md-6">
+		<div id="idEmail">
+			@{ Html.RenderAction("ListEmails", "Emails", @Model.Id); }			
+		</div>
+	</div>
+</div>
+
+@*<script src="~/Scripts/modalform.js"></script>*@

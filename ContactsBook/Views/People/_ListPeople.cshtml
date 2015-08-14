@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ContactsBook.Models.Person>
+
+@Html.ActionLink("Add a new Contact", "Create", "People",null, new { @class = "btn btn-primary btn-sm", data_modal = "" })
+
+<hr style="border-color:red; border-style:groove" />
+
+@foreach (var contact in Model)
+{
+	<div class="row">
+		<div class="col-md-1">
+			<img width="70" style="border-radius:10px" src="@contact.PictureUrl" />
+		</div>
+		<div class="col-md-offset-3">
+			<h4>@Html.DisplayFor(model => contact.LastName), @Html.DisplayFor(model => contact.FirstName)</h4>
+			<h4>Birthday: @Html.DisplayFor(model => contact.BirthDay)</h4>
+			@Ajax.ActionLink("Details", "Details","People", new { id =contact.Id },
+			new AjaxOptions()
+			{
+				HttpMethod = "GET",
+				InsertionMode = InsertionMode.Replace,
+				UpdateTargetId = "details"
+			}, new { @class = "btn btn-primary btn-sm" })
+			@Html.ActionLink("Edit", "Edit", "People", new { id = contact.Id }, new { @class = "btn btn-warning btn-sm", data_modal = "" })
+			@Html.ActionLink("Delete", "Delete", "People", new { id = contact.Id }, new { @class = "btn btn-danger btn-sm", data_modal = "" })
+		</div>
+	</div>
+
+	<hr style="border-color:red; border-style:groove" />
+}
+
+@*<script src="~/Scripts/modalform.js"></script>*@
+
+@*@Html.ActionLink("Add", "Create", "Addresses", new { PersonId = ViewBag.PersonId }, new { @class = "btn btn-primary btn-sm", data_modal = "" })*@
